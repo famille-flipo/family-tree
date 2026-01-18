@@ -618,7 +618,7 @@
         height: auto !important; /* Allow card to size to content */
         border-radius: 8px;
         margin-bottom: 0; /* Remove any extra margin */
-        overflow: visible !important; /* Allow content to overflow naturally */
+        overflow: hidden; /* Keep hidden to maintain rounded corners */
     }
 
     .focus-banner {
@@ -643,8 +643,8 @@
 
     .focus-body {
         padding: 40px 16px 16px 16px; /* REDUCED bottom padding from 20px to 16px */
-        overflow-y: visible !important; /* Allow content to expand naturally */
-        max-height: none !important; /* No height constraint */
+        overflow-y: visible; /* Allow content to expand naturally */
+        max-height: none; /* No height constraint */
     }
 
     /* Slightly smaller name on mobile */
@@ -712,8 +712,8 @@
     /* Focus note - allow full expansion on mobile */
     .focus-note {
         margin-top: 14px; /* REDUCED from 20px */
-        max-height: none !important; /* Allow full expansion */
-        overflow-y: visible !important; /* No internal scrolling */
+        max-height: none; /* Allow full expansion */
+        overflow-y: visible; /* No internal scrolling */
     }
 
     /* COMPACT TIMELINE - Reduced from 70px to 56px */
