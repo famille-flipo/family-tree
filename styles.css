@@ -472,16 +472,23 @@
         flex-wrap: nowrap;
     }
 
+    /* Hide calendar button area on mobile */
     .mode-area {
-        width: 50px;
-        margin-right: 8px;
-        border-right: 1px solid rgba(255,255,255,0.1);
+        display: none;
     }
-
-    #btnCalendar { font-size: 24px; }
 
     /* Hide stats badge on mobile to save space */
     .stats-badge { display: none !important; }
+
+    /* Hide back and favorites buttons on mobile */
+    #btnBack, #btnFav {
+        display: none !important;
+    }
+
+    /* Hide favorites dropdown on mobile */
+    .fav-dropdown {
+        display: none !important;
+    }
 
     /* Make navigation buttons slightly smaller but still touch-friendly (min 44px) */
     .nav-btn {
@@ -492,7 +499,10 @@
     }
 
     /* Compact nav areas */
-    .nav-left { gap: 6px; }
+    .nav-left {
+        gap: 6px;
+        /* Back button is hidden, only home button remains */
+    }
     .nav-right {
         gap: 8px;
         display: none; /* Hide entire right section on mobile (logo + theme button) */
@@ -512,12 +522,16 @@
 
     /* Center nav container adjustments */
     .center-nav-container {
-        margin: 0 8px;
+        margin: 0;
+        margin-left: 8px; /* Only left margin since back button is hidden */
         max-width: none;
         flex: 1; /* Use all available space */
     }
 
-    .search-wrapper { gap: 6px; }
+    .search-wrapper {
+        gap: 6px;
+        width: 100%; /* Full width since favorites button is hidden */
+    }
 
     .search-input {
         padding: 10px 14px;
