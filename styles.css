@@ -532,7 +532,7 @@
         flex-direction: column; /* VERTICAL STACK instead of horizontal */
         width: 100%;
         height: auto;
-        gap: 12px;
+        gap: 4px; /* REDUCED from 12px to 4px for tighter spacing */
         align-items: stretch;
     }
 
@@ -541,10 +541,14 @@
         flex: none;
         min-width: 100%;
         width: 100%;
+        height: auto !important; /* CRITICAL: Override desktop height: 100% */
         max-height: none;
-        overflow-y: visible;
+        min-height: auto; /* No minimum height */
+        overflow-y: visible !important; /* Show all content, no scrolling within columns */
+        overflow-x: hidden;
         padding-bottom: 0;
-        gap: 8px;
+        gap: 6px; /* REDUCED from 8px to 6px */
+        margin-bottom: 0; /* Ensure no extra margin */
     }
 
     /* Reset opacity and blur filters on mobile - all visible */
@@ -558,22 +562,25 @@
         flex: none;
         min-width: 100%;
         width: 100%;
+        height: auto !important; /* Override any fixed height */
     }
 
     /* Column headers - better touch targets */
     .col-header {
-        min-height: 48px;
+        min-height: 44px; /* REDUCED from 48px */
         font-size: 11px;
         padding: 8px 12px;
         border-radius: 8px;
         position: relative; /* Not sticky on mobile for better scrolling */
+        margin-bottom: 6px; /* REDUCED margin */
     }
 
     .sub-col-header {
-        min-height: 48px;
+        min-height: 44px; /* REDUCED from 48px */
         font-size: 11px;
         padding: 8px 12px;
         position: relative; /* Not sticky on mobile */
+        margin-bottom: 6px; /* REDUCED margin */
     }
 
     /* Cards - better touch targets and readability */
@@ -607,32 +614,37 @@
 
     /* Focus card adjustments for mobile */
     .focus-card {
-        min-height: auto;
+        min-height: auto !important; /* CRITICAL: Override desktop min-height: 520px */
+        height: auto !important; /* Allow card to size to content */
         border-radius: 8px;
+        margin-bottom: 0; /* Remove any extra margin */
+        overflow: visible !important; /* Allow content to overflow naturally */
     }
 
     .focus-banner {
-        height: 80px; /* Slightly smaller on mobile */
+        height: 70px; /* REDUCED from 80px for more compact */
     }
 
     .focus-fav-btn {
         width: 44px;
         height: 44px;
         font-size: 20px;
-        top: 10px;
-        right: 10px;
+        top: 8px;
+        right: 8px;
     }
 
     .focus-avatar-large {
-        width: 70px;
-        height: 70px;
-        bottom: -35px;
+        width: 64px; /* REDUCED from 70px */
+        height: 64px;
+        bottom: -32px; /* Adjusted for smaller avatar */
         border-width: 3px;
-        font-size: 28px;
+        font-size: 26px;
     }
 
     .focus-body {
-        padding: 45px 16px 20px 16px;
+        padding: 40px 16px 16px 16px; /* REDUCED bottom padding from 20px to 16px */
+        overflow-y: visible !important; /* Allow content to expand naturally */
+        max-height: none !important; /* No height constraint */
     }
 
     /* Slightly smaller name on mobile */
@@ -640,39 +652,46 @@
         font-size: 24px;
     }
 
+    .name-separator {
+        margin: 8px auto 10px auto; /* REDUCED from 10px auto 15px auto */
+    }
+
     /* Vital stats stacked on very small screens */
     .vital-stats {
         flex-direction: row;
-        gap: 8px;
-        margin-top: 16px;
+        gap: 6px; /* REDUCED from 8px */
+        margin-top: 12px; /* REDUCED from 16px */
     }
 
     .vital-column {
-        padding: 10px 8px;
+        padding: 8px 6px; /* REDUCED padding */
         border-radius: 6px;
     }
 
     .vital-label {
         font-size: 9px;
+        margin-bottom: 2px; /* REDUCED spacing */
     }
 
     .vital-date {
         font-size: 13px;
+        margin-bottom: 1px; /* REDUCED spacing */
     }
 
     .vital-place-main {
         font-size: 13px;
+        margin-top: 2px; /* REDUCED from 4px */
     }
 
     .vital-place-sub {
         font-size: 10px;
-        margin-top: 8px;
+        margin-top: 6px; /* REDUCED from 8px */
     }
 
     /* Spouse section */
     .spouse-section {
-        margin-top: 20px;
-        padding: 12px;
+        margin-top: 14px; /* REDUCED from 20px */
+        padding: 10px; /* REDUCED from 12px */
         border-radius: 6px;
     }
 
@@ -688,6 +707,13 @@
 
     .spouse-meta {
         font-size: 12px;
+    }
+
+    /* Focus note - allow full expansion on mobile */
+    .focus-note {
+        margin-top: 14px; /* REDUCED from 20px */
+        max-height: none !important; /* Allow full expansion */
+        overflow-y: visible !important; /* No internal scrolling */
     }
 
     /* COMPACT TIMELINE - Reduced from 70px to 56px */
@@ -815,17 +841,24 @@
         display: flex !important;
         flex-direction: column !important;
         overflow: visible !important;
-        height: auto;
+        height: auto !important; /* Override any fixed height */
+        min-height: auto !important;
     }
 
     .parents-fixed-area {
-        padding-bottom: 8px;
-        gap: 8px;
+        padding-bottom: 6px; /* REDUCED from 8px */
+        gap: 6px; /* REDUCED from 8px */
+        flex-shrink: 0;
     }
 
     .parents-scroll-area {
-        overflow-y: visible;
-        gap: 8px;
+        overflow-y: visible !important; /* Show all content */
+        overflow-x: hidden;
+        gap: 6px; /* REDUCED from 8px */
+        flex-grow: 0; /* Don't expand to fill space */
+        flex-shrink: 0;
+        height: auto !important; /* Critical for auto-sizing */
+        min-height: auto !important;
     }
 }
 
@@ -860,14 +893,18 @@
     }
 
     .focus-avatar-large {
-        width: 60px;
-        height: 60px;
-        bottom: -30px;
-        font-size: 24px;
+        width: 56px; /* REDUCED from 60px */
+        height: 56px;
+        bottom: -28px; /* Adjusted for smaller avatar */
+        font-size: 22px;
     }
 
     .focus-body {
-        padding: 40px 14px 18px 14px;
+        padding: 36px 14px 14px 14px; /* REDUCED padding */
+    }
+
+    .focus-banner {
+        height: 64px; /* REDUCED for ultra-small screens */
     }
 
     /* Calendar single column */
