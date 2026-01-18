@@ -877,8 +877,20 @@
         const favIcon = isFav ? '★' : '☆';
         const favClass = isFav ? 'active' : '';
 
+        // Check if person has any death information
+        const hasDeath = p.death && (p.death.date || p.death.place);
+
         const fsHtml = p.fsId ? `<a href="https://www.familysearch.org/tree/person/details/${p.fsId}" target="_blank" class="focus-fsid" title="${t('tooltips.fs')}">Familysearch: ${p.fsId} ↗</a>` : '';
         let nameHtml = p.surname ? `<span class="name-given">${toTitleCase(p.given)}</span><span class="name-surname">${toTitleCase(p.surname)}</span>` : `<span class="name-given">${toTitleCase(p.name)}</span>`;
+
+        // Build death column HTML only if person has death information
+        const deathColumnHtml = hasDeath ? `
+            <div class="vital-column" onclick="navigateToCalendarDate('${p.death.date ? p.death.date.replace(/'/g, "\\'") : ''}')" title="${t('tooltips.calendarView')}">
+                <span class="vital-label">${t('card.deat')}</span>
+                <span class="vital-date">${dDate}</span>
+                <div class="vital-place">${formatPlace(p.death.place)}</div>
+            </div>
+        ` : '';
 
         card.innerHTML = `
             <div class="focus-banner">
@@ -898,11 +910,7 @@
                         <span class="vital-date">${bDate}</span>
                         <div class="vital-place">${formatPlace(p.birth.place)}</div>
                     </div>
-                    <div class="vital-column" onclick="navigateToCalendarDate('${p.death.date ? p.death.date.replace(/'/g, "\\'") : ''}')" title="${t('tooltips.calendarView')}">
-                        <span class="vital-label">${t('card.deat')}</span>
-                        <span class="vital-date">${dDate}</span>
-                        <div class="vital-place">${formatPlace(p.death.place)}</div>
-                    </div>
+                    ${deathColumnHtml}
                 </div>
                 ${spousesHTML}
                 ${notes ? `<div class="focus-note">${notes}</div>` : ''}
