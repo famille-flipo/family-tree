@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View and explore your GEDCOM files online for free. Create interactive genealogical charts, timelines, and maps. Your data remains private in your browser.">
+    <title>GEDCOM Explorer | Explore your past</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Password Prompt Modal -->
+    <div id="passwordModal" class="password-modal" style="display:none;">
+        <div class="password-modal-content">
+            <div class="password-header">
+                <div class="password-icon">🔒</div>
+                <h2 class="password-title">Protected Family Tree</h2>
+                <p class="password-subtitle">Enter password to view</p>
+            </div>
+            <div class="password-body">
+                <input type="password" id="passwordInput" class="password-input" placeholder="Enter password" autocomplete="off">
+                <p id="passwordError" class="password-error"></p>
+                <button id="passwordSubmit" class="password-submit">Unlock</button>
+            </div>
+            <div id="passwordSpinner" class="password-spinner" style="display:none;">
+                <div class="spinner"></div>
+                <p>Decrypting...</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="uploadLayer">
+        <div class="upload-title">GEDCOM<span style="color:var(--text-accent)">Explorer</span></div>
+        <div id="txtSubtitle" class="upload-sub">Esplora il tuo passato. Carica un file GEDCOM.</div>
+        <label class="btn-upload">
+            <span id="txtBtnUpload">Apri File</span>
+            <input type="file" id="fileInput" accept=".ged" style="display:none">
+        </label>
+        <p id="errorMsg" style="color:#ef4444; margin-top:20px; font-size:12px;"></p>
+
+        <div class="upload-footer">
+            <div class="lang-switcher">
+                <button class="lang-btn" onclick="setLanguage('it')" title="Italiano">🇮🇹</button>
+                <button class="lang-btn active" onclick="setLanguage('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLanguage('es')" title="Español">🇪🇸</button>
+                <button class="lang-btn" onclick="setLanguage('fr')" title="Français">🇫🇷</button>
+                <button class="lang-btn" onclick="setLanguage('de')" title="Deutsch">🇩🇪</button>
+            </div>
+            <div>Ver 1.01 - © DM 2026 (Fork)</div>
+        </div>
+    </div>
+
+    <div class="top-bar">
+        <div class="mode-area">
+            <button id="btnCalendar" title="Vista Calendario">📅</button>
+        </div>
+
+        <div class="nav-left">
+            <button class="nav-btn" id="btnBack" title="Indietro" disabled>‹</button>
+            <button class="nav-btn" id="btnHome" title="Torna all'inizio">⌂</button>
+            <div class="stats-badge" id="statsBadge"><span id="txtStats">Persone:</span> <strong>0</strong></div>
+            <button class="nav-btn" id="btnToday" title="Vai a Oggi" style="display:none; font-size: 12px; font-weight: 700; width: auto; padding: 0 12px;">OGGI</button>
+            <div id="dynamicMonthTitle" class="header-month-title">GENNAIO</div>
+        </div>
+
+        <div class="center-nav-container">
+            <div class="search-wrapper" id="searchWrapper">
+                <input type="text" class="search-input" id="searchInput" placeholder="Cerca persona...">
+                <div style="position:relative;">
+                    <button class="nav-btn" id="btnFav" title="Preferiti">★</button>
+                    <div class="fav-dropdown" id="favDropdown">
+                        <div class="fav-header" id="txtFavHeader">Preferiti Salvati</div>
+                        <div class="fav-list" id="favList"></div>
+                        <div class="fav-footer" id="favFooter" style="display:none;">
+                            <button class="btn-clear-favs" id="btnFavClear" onclick="clearAllFavorites()">Cancella tutto</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+
+            <div class="month-nav-wrapper" id="monthNavWrapper"></div>
+        </div>
+
+        <div class="nav-right">
+            <div class="app-logo">GEDCOM<span id="appTitleSuffix">Explorer</span></div>
+            <button class="nav-btn" id="btnTheme" title="Cambia Tema">☾</button>
+        </div>
+    </div>
+
+    <div class="navigator-stage" id="stageContainer">
+        <div class="columns-wrapper" id="stage"></div>
+    </div>
+
+    <div class="calendar-stage" id="calendarStage">
+        <div class="cal-header-row cal-grid-def">
+            <div class="cal-col-center" id="calHeadDay">Giorno</div>
+            <div class="cal-col-left" id="calHeadBirth">Nascite</div>
+            <div class="cal-col-left" id="calHeadMarr">Matrimoni</div>
+            <div class="cal-col-left" id="calHeadDeath">Morti</div>
+        </div>
+        <div id="calendarContent"></div>
+    </div>
+
+    <div class="timeline-container" id="timelineUI" style="display:none;">
+        <div class="timeline-year-start" id="tlStart">1900</div>
+        <div class="timeline-track-wrapper" id="tlTrack"><div class="timeline-line"></div></div>
+        <div class="timeline-year-end" id="tlEnd">2024</div>
+    </div>
+
+    <script src="gedcom-data.js"></script>
+    <script src="crypto.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

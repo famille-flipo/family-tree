@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEDCOM Encryption Utility</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .encrypt-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: var(--focus-card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .encrypt-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .encrypt-subtitle {
+            font-size: 14px;
+            color: var(--text-sub);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .step-section {
+            margin-bottom: 30px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--focus-banner);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+        }
+
+        .file-input-button:hover {
+            background: var(--glass-highlight);
+            border-color: var(--text-accent);
+        }
+
+        .file-name {
+            margin-top: 10px;
+            font-size: 13px;
+            color: var(--text-accent);
+            font-weight: 600;
+        }
+
+        .password-field {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid var(--glass-border);
+            border-radius: 8px;
+            background: var(--glass-bg);
+            color: var(--text-main);
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .password-field:focus {
+            outline: none;
+            border-color: var(--text-accent);
+            background: var(--glass-highlight);
+        }
+
+        .encrypt-button {
+            width: 100%;
+            padding: 16px 30px;
+            border-radius: 8px;
+            border: none;
+            background: var(--focus-banner);
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+        }
+
+        .encrypt-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .encrypt-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-section {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid var(--glass-border);
+            display: none;
+        }
+
+        .result-section.show {
+            display: block;
+        }
+
+        .output-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid var(--glass-border);
+            border-radius: 8px;
+            background: var(--glass-bg);
+            color: var(--text-main);
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+
+        .copy-button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 2px solid var(--text-accent);
+            background: transparent;
+            color: var(--text-accent);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .copy-button:hover {
+            background: var(--text-accent);
+            color: #fff;
+        }
+
+        .copy-button.copied {
+            background: var(--gen-green);
+            border-color: var(--gen-green);
+            color: #fff;
+        }
+
+        .instructions {
+            background: rgba(166, 106, 78, 0.1);
+            border: 1px solid rgba(166, 106, 78, 0.2);
+            color: var(--text-main);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .instructions h4 {
+            margin-top: 0;
+            color: var(--gen-orange);
+            font-size: 16px;
+        }
+
+        .instructions ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .instructions code {
+            background: var(--glass-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .status-message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .status-success {
+            background: rgba(138, 176, 148, 0.2);
+            border: 1px solid var(--gen-green);
+            color: var(--gen-green);
+        }
+
+        .status-error {
+            background: rgba(194, 94, 94, 0.2);
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+        }
+
+        .spinner-inline {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="encrypt-container">
+        <h1 class="encrypt-title">🔒 GEDCOM Encryption Utility</h1>
+        <p class="encrypt-subtitle">Encrypt your GEDCOM file with a password for secure sharing</p>
+
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Upload GEDCOM File</h3>
+            </div>
+            <div class="file-input-wrapper">
+                <label class="file-input-button" for="gedcomFile">
+                    Choose GEDCOM File (.ged)
+                </label>
+                <input type="file" id="gedcomFile" accept=".ged" style="display:none;">
+            </div>
+            <div id="fileName" class="file-name"></div>
+        </div>
+
+        <div class="step-section">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Enter Password</h3>
+            </div>
+            <input type="password" id="password" class="password-field" placeholder="Enter encryption password">
+            <input type="password" id="passwordConfirm" class="password-field" placeholder="Confirm password" style="margin-top: 10px;">
+        </div>
+
+        <button id="encryptButton" class="encrypt-button" disabled>Encrypt GEDCOM</button>
+
+        <div id="statusMessage"></div>
+
+        <div id="resultSection" class="result-section">
+            <div class="step-header">
+                <div class="step-number">✓</div>
+                <h3 class="step-title">Encrypted Data</h3>
+            </div>
+            <textarea id="encryptedOutput" class="output-textarea" readonly></textarea>
+            <button id="copyButton" class="copy-button">Copy to Clipboard</button>
+
+            <div class="instructions">
+                <h4>Next Steps:</h4>
+                <ol>
+                    <li>Click "Copy to Clipboard" to copy the encrypted text</li>
+                    <li>Open <code>gedcom-data.js</code> in your code editor</li>
+                    <li>Find the line: <code>const ENCRYPTED_GEDCOM_DATA = "";</code></li>
+                    <li>Paste the encrypted text between the quotes</li>
+                    <li>Save the file</li>
+                    <li>Deploy your site to GitHub Pages or any static hosting</li>
+                    <li>Share the URL with your password (separately!)</li>
+                </ol>
+                <p style="margin-top: 15px; font-size: 13px; color: var(--text-sub);">
+                    <strong>Important:</strong> Never share your password in the same message as the URL.
+                    Send them separately for security.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="crypto.js"></script>
+    <script>
+        let gedcomContent = null;
+
+        // File upload handler
+        document.getElementById('gedcomFile').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            document.getElementById('fileName').textContent = `Selected: ${file.name}`;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                gedcomContent = event.target.result;
+                checkEnableButton();
+            };
+            reader.onerror = () => {
+                showStatus('Error reading file', 'error');
+            };
+            reader.readAsText(file);
+        });
+
+        // Password validation
+        function checkEnableButton() {
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('passwordConfirm').value;
+            const button = document.getElementById('encryptButton');
+
+            button.disabled = !(
+                gedcomContent &&
+                password.length >= 4 &&
+                password === passwordConfirm
+            );
+        }
+
+        document.getElementById('password').addEventListener('input', checkEnableButton);
+        document.getElementById('passwordConfirm').addEventListener('input', checkEnableButton);
+
+        // Encrypt button handler
+        document.getElementById('encryptButton').addEventListener('click', async () => {
+            const password = document.getElementById('password').value;
+            const button = document.getElementById('encryptButton');
+
+            button.disabled = true;
+            button.innerHTML = 'Encrypting... <span class="spinner-inline"></span>';
+
+            try {
+                const encrypted = await encryptGEDCOM(gedcomContent, password);
+
+                document.getElementById('encryptedOutput').value = encrypted;
+                document.getElementById('resultSection').classList.add('show');
+
+                showStatus('Encryption successful! 🎉', 'success');
+
+                // Scroll to result
+                setTimeout(() => {
+                    document.getElementById('resultSection').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }, 300);
+
+            } catch (error) {
+                showStatus('Encryption failed: ' + error.message, 'error');
+            } finally {
+                button.disabled = false;
+                button.innerHTML = 'Encrypt GEDCOM';
+            }
+        });
+
+        // Copy to clipboard
+        document.getElementById('copyButton').addEventListener('click', () => {
+            const output = document.getElementById('encryptedOutput');
+            const button = document.getElementById('copyButton');
+
+            output.select();
+            document.execCommand('copy');
+
+            button.textContent = '✓ Copied!';
+            button.classList.add('copied');
+
+            setTimeout(() => {
+                button.textContent = 'Copy to Clipboard';
+                button.classList.remove('copied');
+            }, 2000);
+        });
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.innerHTML = `<div class="status-message status-${type}">${message}</div>`;
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    statusDiv.innerHTML = '';
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>

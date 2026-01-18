@@ -1,0 +1,39 @@
+# GEDCOM files (keep your family data private)
+# Exception: test.ged is allowed (it's just sample data)
+*.ged
+!test.ged
+
+# Backup of original source (large file, not needed in git)
+original.html
+
+# Generated deployment folders
+deploy/
+netlify-deploy/
+
+# macOS
+.DS_Store
+
+# Node modules (if you add any npm dependencies later)
+node_modules/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Environment files (if you add any)
+.env
+.env.local
+
+# Encrypted GEDCOM data file
+# Uncomment the line below if you've added your real encrypted data to gedcom-data.js
+# and want to keep it private (for public repositories)
+# gedcom-data.js
+
+# Note: Even encrypted data might reveal family size/structure through file size.
+# For maximum privacy with public repos, uncomment the line above.

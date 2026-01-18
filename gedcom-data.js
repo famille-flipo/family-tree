@@ -1,0 +1,16 @@
+/**
+ * GEDCOM Encrypted Data
+ *
+ * This file contains your encrypted GEDCOM data.
+ *
+ * Instructions:
+ * 1. Open encrypt.html in your browser
+ * 2. Upload your GEDCOM file and enter a password
+ * 3. Copy the encrypted output
+ * 4. Paste it between the quotes below (replace the empty string)
+ * 5. Save this file
+ *
+ * Leave empty ("") to use manual file upload mode for testing.
+ */
+
+const ENCRYPTED_GEDCOM_DATA = "0OqypLNft6yZPglmnnZ9yuW1efwJWZ3YSr1qtJkfSWEgj44hMIFOdIpAD+47KUu5j/2lTnrIM245iFgHadsbpKkGBcdHfDQKzH8Yy/ReqLjNG/ibvzbtvwh1gAkpBfNA5YayVREFBu/fbKttY9EMBHf2WY41cWbzncNozi2hG6hD5Ry4PgkHGgMsetRexSkRAIwd/SH2KeHYMqXnqqoFfBMzlcVAArYRmG84ctPy0HirR09EQwr5TC8SOLx/MBubjIM9W99AqMdF3AJPNRumzUZW9G+ZDWuR8dxsPvFufp8TQN8p+IvnmIipUdXUcJqZbaW/l7xOiQKB89MYw0GsMNW3ewk/+N7W6VrvEFgip1OmjUyckdrwgoX0tC//LRzBvEWbmkSZAje9bVI15NQm2x9xB+kIkT/jOTpWCfr8PfsfDVjwvzd9UBJDwPFF9rf8SxTF2YhAg2TZQrKnmmeyVLSDDYFyporjUCZyJBVLaAoDbRGMbQCsgetrftx0VYiBnqwE4WeZWiTsUgqzVuw7hixQ7XjhnRZiPziiDCE+LKDsJpHauO0TsY0MzuKNTstKf8Y1MAYv2we5UG4vDIyzcwA4oBa50yAslFDpJkA1zYfmickvoSQmxDOzwAXubstXt+9noDUCaLqNqPq1G+ingzPa1HyaoN93/IAOzGh5WKqrIG+QjGPbCRC1vOxdGcTpSKT35J+6Pw/h7xpQaaDFJsaYQKhUjA2pJhQ8EtSbxCkGa9xrUK1Ovmhltd1IfwTZwAY2Mi0OfV0PcX/S+ZCMDwvH7CHqBMcp7ZcTqYhsSUkmmaWJDYyWJI07SLAiIOdMs4PkT0tl67LmsPd3AAeajq0MdRsThoTprruHB8Jac8guhYQ50DBxGfCYDHnvE72k432tGcSbmkY4fZqGYMbu8l0qelP4HoVwoWX1ZzybSe5vOSVsloWmJ8r4hd+zHP4oXz44tGRL4gpH2Wr0AKe2kGdXoI2CzcxRbxeDkAzSNxQi7ZJ+vi92VCTLRmasZzKgJecJZNe6d2BsEMJ+B6oroK8EzDWRt7luZqBY+4v+qe47Cd12Y6Ng4gFcJeH1oDMozjFsfD+ijMGtTlfq3tQbp+RSNreBZE0aMy7Xkc5lEIYOBiWvbh3yEZ9cQZtz0gfGis1PI8P4QseLYwhorSuqobfK0yeUC0lTiHcH5RRffaggflJrA22GBn9DewMbmTWtVWkp7+xNT/7ExerRg+Rltu36lm4K19RlJxtdpV4NWGfwQNJXjG7ZWfVSMVcPmovMZUWCL35fWMUl/aVo6j7L6+7tSItZj3RK0YSfz0vd7/VdjAOfdOCBns1G17550DxZ13/RAtZp6nvmk8y6vEKoEAkFd4BRlHJL/+e6GTaecEJNrgW02oGl9hNOAwMamzUSHg0e2V3P4qJKGXzGPyp8p+f2HuZIH+UPGu6ZRY+cClne0Mhq90dWXvefhcVeV53n";
