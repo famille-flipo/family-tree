@@ -179,13 +179,13 @@
         document.getElementById('txtBtnUpload').innerText = t('btnUpload');
         document.getElementById('txtStats').innerText = t('stats');
         document.getElementById('btnToday').innerText = t('today');
-        
+
         document.getElementById('btnBack').title = t('tooltips.back');
         document.getElementById('btnHome').title = t('tooltips.home');
         document.getElementById('btnFav').title = t('tooltips.fav');
         document.getElementById('btnTheme').title = t('tooltips.theme');
         document.getElementById('btnToday').title = t('tooltips.today');
-        
+
         const btnCalendar = document.getElementById('btnCalendar');
         if(IS_CALENDAR_MODE) {
             btnCalendar.title = t('tooltips.tree');
@@ -202,6 +202,9 @@
             btn.innerText = m;
             wrapper.appendChild(btn);
         });
+
+        // Update search placeholder
+        document.getElementById('searchInput').placeholder = t('search');
     }
 
     function updateCalendarHeaders() {

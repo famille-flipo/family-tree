@@ -30,9 +30,9 @@
 
     <div id="uploadLayer">
         <div class="upload-title">GEDCOM<span style="color:var(--text-accent)">Explorer</span></div>
-        <div id="txtSubtitle" class="upload-sub">Esplora il tuo passato. Carica un file GEDCOM.</div>
+        <div id="txtSubtitle" class="upload-sub">Explorez votre passé. Chargez un fichier GEDCOM.</div>
         <label class="btn-upload">
-            <span id="txtBtnUpload">Apri File</span>
+            <span id="txtBtnUpload">Ouvrir Fichier</span>
             <input type="file" id="fileInput" accept=".ged" style="display:none">
         </label>
         <p id="errorMsg" style="color:#ef4444; margin-top:20px; font-size:12px;"></p>
@@ -40,9 +40,9 @@
         <div class="upload-footer">
             <div class="lang-switcher">
                 <button class="lang-btn" onclick="setLanguage('it')" title="Italiano">🇮🇹</button>
-                <button class="lang-btn active" onclick="setLanguage('en')" title="English">🇺🇸</button>
+                <button class="lang-btn" onclick="setLanguage('en')" title="English">🇺🇸</button>
                 <button class="lang-btn" onclick="setLanguage('es')" title="Español">🇪🇸</button>
-                <button class="lang-btn" onclick="setLanguage('fr')" title="Français">🇫🇷</button>
+                <button class="lang-btn active" onclick="setLanguage('fr')" title="Français">🇫🇷</button>
                 <button class="lang-btn" onclick="setLanguage('de')" title="Deutsch">🇩🇪</button>
             </div>
             <div>Ver 1.01 - © DM 2026 (Fork)</div>
@@ -51,27 +51,27 @@
 
     <div class="top-bar">
         <div class="mode-area">
-            <button id="btnCalendar" title="Vista Calendario">📅</button>
+            <button id="btnCalendar" title="Vue Calendrier">📅</button>
         </div>
 
         <div class="nav-left">
-            <button class="nav-btn" id="btnBack" title="Indietro" disabled>‹</button>
-            <button class="nav-btn" id="btnHome" title="Torna all'inizio">⌂</button>
-            <div class="stats-badge" id="statsBadge"><span id="txtStats">Persone:</span> <strong>0</strong></div>
-            <button class="nav-btn" id="btnToday" title="Vai a Oggi" style="display:none; font-size: 12px; font-weight: 700; width: auto; padding: 0 12px;">OGGI</button>
-            <div id="dynamicMonthTitle" class="header-month-title">GENNAIO</div>
+            <button class="nav-btn" id="btnBack" title="Retour" disabled>‹</button>
+            <button class="nav-btn" id="btnHome" title="Retour au début">⌂</button>
+            <div class="stats-badge" id="statsBadge"><span id="txtStats">Personnes:</span> <strong>0</strong></div>
+            <button class="nav-btn" id="btnToday" title="Aller à Aujourd'hui" style="display:none; font-size: 12px; font-weight: 700; width: auto; padding: 0 12px;">AUJOURD'HUI</button>
+            <div id="dynamicMonthTitle" class="header-month-title">JANVIER</div>
         </div>
 
         <div class="center-nav-container">
             <div class="search-wrapper" id="searchWrapper">
-                <input type="text" class="search-input" id="searchInput" placeholder="Cerca persona...">
+                <input type="text" class="search-input" id="searchInput" placeholder="Chercher une personne...">
                 <div style="position:relative;">
-                    <button class="nav-btn" id="btnFav" title="Preferiti">★</button>
+                    <button class="nav-btn" id="btnFav" title="Favoris">★</button>
                     <div class="fav-dropdown" id="favDropdown">
-                        <div class="fav-header" id="txtFavHeader">Preferiti Salvati</div>
+                        <div class="fav-header" id="txtFavHeader">Favoris enregistrés</div>
                         <div class="fav-list" id="favList"></div>
                         <div class="fav-footer" id="favFooter" style="display:none;">
-                            <button class="btn-clear-favs" id="btnFavClear" onclick="clearAllFavorites()">Cancella tutto</button>
+                            <button class="btn-clear-favs" id="btnFavClear" onclick="clearAllFavorites()">Tout effacer</button>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
 
         <div class="nav-right">
             <div class="app-logo">GEDCOM<span id="appTitleSuffix">Explorer</span></div>
-            <button class="nav-btn" id="btnTheme" title="Cambia Tema">☾</button>
+            <button class="nav-btn" id="btnTheme" title="Changer le thème">☾</button>
         </div>
     </div>
 
@@ -93,10 +93,10 @@
 
     <div class="calendar-stage" id="calendarStage">
         <div class="cal-header-row cal-grid-def">
-            <div class="cal-col-center" id="calHeadDay">Giorno</div>
-            <div class="cal-col-left" id="calHeadBirth">Nascite</div>
-            <div class="cal-col-left" id="calHeadMarr">Matrimoni</div>
-            <div class="cal-col-left" id="calHeadDeath">Morti</div>
+            <div class="cal-col-center" id="calHeadDay">Jour</div>
+            <div class="cal-col-left" id="calHeadBirth">Naissances</div>
+            <div class="cal-col-left" id="calHeadMarr">Mariages</div>
+            <div class="cal-col-left" id="calHeadDeath">Décès</div>
         </div>
         <div id="calendarContent"></div>
     </div>
