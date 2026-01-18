@@ -430,6 +430,13 @@
 
 /* Mobile devices */
 @media (max-width: 768px) {
+    /* Remove any body margins/padding that create right space */
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
     /* Enable smooth scrolling on mobile */
     .navigator-stage {
         -webkit-overflow-scrolling: touch;
@@ -485,7 +492,10 @@
 
     /* Compact nav areas */
     .nav-left { gap: 6px; }
-    .nav-right { gap: 8px; }
+    .nav-right {
+        gap: 8px;
+        display: none; /* Hide entire right section on mobile (logo + theme button) */
+    }
 
     /* Hide "OGGI" text button on small screens */
     #btnToday {
@@ -503,6 +513,7 @@
     .center-nav-container {
         margin: 0 8px;
         max-width: none;
+        flex: 1; /* Use all available space */
     }
 
     .search-wrapper { gap: 6px; }
@@ -522,25 +533,31 @@
 
     /* VERTICAL STACKED LAYOUT - Main change for mobile */
     .navigator-stage {
-        padding: 8px 8px 56px 8px; /* Reduced bottom padding for compact timeline */
+        padding: 8px; /* Equal padding on all sides */
+        padding-bottom: 56px; /* Extra bottom for timeline */
         overflow-y: auto;
         overflow-x: hidden;
         align-items: stretch;
+        width: 100%; /* Full width */
     }
 
     .columns-wrapper {
         flex-direction: column; /* VERTICAL STACK instead of horizontal */
         width: 100%;
+        max-width: 100%; /* Ensure it doesn't exceed viewport */
         height: auto;
         gap: 4px; /* REDUCED from 12px to 4px for tighter spacing */
         align-items: stretch;
+        margin: 0; /* Remove any default margins */
+        padding: 0; /* Remove any default padding */
     }
 
     /* All columns full width on mobile */
     .column {
         flex: none;
-        min-width: 100%;
+        min-width: 0; /* Allow shrinking */
         width: 100%;
+        max-width: 100%; /* Prevent exceeding viewport */
         height: auto !important; /* CRITICAL: Override desktop height: 100% */
         max-height: none;
         min-height: auto; /* No minimum height */
@@ -549,6 +566,8 @@
         padding-bottom: 0;
         gap: 6px; /* REDUCED from 8px to 6px */
         margin-bottom: 0; /* Ensure no extra margin */
+        margin-left: 0;
+        margin-right: 0;
     }
 
     /* Reset opacity and blur filters on mobile - all visible */
@@ -560,8 +579,9 @@
     /* Focus card full width */
     .w-0 {
         flex: none;
-        min-width: 100%;
+        min-width: 0; /* Allow shrinking */
         width: 100%;
+        max-width: 100%; /* Prevent exceeding viewport */
         height: auto !important; /* Override any fixed height */
     }
 
@@ -588,10 +608,15 @@
         min-height: 70px;
         padding: 0;
         border-radius: 8px;
+        width: 100%;
+        max-width: 100%; /* Prevent cards from exceeding column width */
+        box-sizing: border-box; /* Include border in width calculation */
     }
 
     .card-content {
         padding: 8px 6px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     /* Larger avatars on mobile for better visibility */
@@ -616,9 +641,12 @@
     .focus-card {
         min-height: auto !important; /* CRITICAL: Override desktop min-height: 520px */
         height: auto !important; /* Allow card to size to content */
+        width: 100%;
+        max-width: 100%; /* Prevent exceeding column width */
         border-radius: 8px;
         margin-bottom: 0; /* Remove any extra margin */
         overflow: hidden; /* Keep hidden to maintain rounded corners */
+        box-sizing: border-box; /* Include border in width */
     }
 
     .focus-banner {
