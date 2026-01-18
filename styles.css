@@ -535,7 +535,6 @@
     /* VERTICAL STACKED LAYOUT - Main change for mobile */
     .navigator-stage {
         padding: 8px; /* Equal padding on all sides */
-        padding-bottom: 56px; /* Extra bottom for timeline */
         overflow-y: auto;
         overflow-x: hidden;
         align-items: stretch;
@@ -751,37 +750,9 @@
         overflow-y: visible; /* No internal scrolling */
     }
 
-    /* COMPACT TIMELINE - Reduced from 70px to 56px */
+    /* HIDE TIMELINE on mobile - not useful on small screens */
     .timeline-container {
-        height: 56px;
-        padding: 0 20px;
-    }
-
-    .timeline-track-wrapper {
-        height: 24px;
-    }
-
-    .timeline-dot {
-        width: 10px;
-        height: 10px;
-    }
-
-    .timeline-dot.is-focus {
-        width: 18px;
-        height: 18px;
-        border-width: 2px;
-    }
-
-    .timeline-label {
-        font-size: 9px;
-        padding: 3px 6px;
-        top: -25px;
-    }
-
-    .timeline-year-start, .timeline-year-end {
-        font-size: 10px;
-        margin: 0 8px;
-        min-width: 35px;
+        display: none !important;
     }
 
     /* Calendar view optimizations */
