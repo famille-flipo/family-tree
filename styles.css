@@ -563,8 +563,7 @@
         gap: 6px; /* INCREASED from 4px to match column internal gap */
         align-items: stretch;
         margin: 0; /* Remove any default margins */
-        padding: 0;
-        padding-bottom: 40px; /* Add bottom padding so last element has space */
+        padding: 0; /* Remove any default padding */
     }
 
     /* All columns full width on mobile */
@@ -598,7 +597,6 @@
         width: 100%;
         max-width: 100%; /* Prevent exceeding viewport */
         height: auto !important; /* Override any fixed height */
-        margin-bottom: 32px; /* Add space at bottom for when it's the last element */
     }
 
     /* Column headers - better touch targets */
@@ -660,7 +658,7 @@
         width: 100%;
         max-width: 100%; /* Prevent exceeding column width */
         border-radius: 8px;
-        margin-bottom: 0; /* Remove any extra margin */
+        margin-bottom: 8px; /* Remove any extra margin */
         overflow: hidden; /* Keep hidden to maintain rounded corners */
         box-sizing: border-box; /* Include border in width */
     }
