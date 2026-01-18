@@ -756,8 +756,18 @@
             setTimeout(() => {
                 const focusEl = stage.querySelector('.w-0');
                 if(focusEl) {
-                    const centerPos = focusEl.offsetLeft - (container.clientWidth / 2) + (focusEl.clientWidth / 2);
-                    container.scrollTo({ left: centerPos, behavior: 'smooth' });
+                    // Check if we're on mobile (vertical layout)
+                    const isMobile = window.innerWidth <= 768;
+
+                    if (isMobile) {
+                        // Mobile: scroll vertically to focus card
+                        const topPos = focusEl.offsetTop - (container.clientHeight / 2) + (focusEl.clientHeight / 2);
+                        container.scrollTo({ top: topPos, behavior: 'smooth' });
+                    } else {
+                        // Desktop: scroll horizontally to center
+                        const centerPos = focusEl.offsetLeft - (container.clientWidth / 2) + (focusEl.clientWidth / 2);
+                        container.scrollTo({ left: centerPos, behavior: 'smooth' });
+                    }
                 }
             }, 100);
         }, 200);

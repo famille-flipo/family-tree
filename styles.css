@@ -417,3 +417,466 @@
         transform: rotate(360deg);
     }
 }
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   ======================================== */
+
+/* Tablet and below */
+@media (max-width: 900px) {
+    .top-bar { padding: 0 12px; }
+    .center-nav-container { margin: 0 10px; }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+    /* Enable smooth scrolling on mobile */
+    .navigator-stage {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    /* Touch feedback - active states */
+    .card:active {
+        transform: scale(0.98);
+        background: var(--indicator-hover-bg);
+    }
+
+    .nav-btn:active:not(:disabled) {
+        transform: scale(0.95);
+    }
+
+    /* Better touch targets for buttons */
+    button, .card, .result-item, .fav-item, .spouse-row, .cal-event {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+
+    /* Prevent text selection on touch */
+    .nav-btn, .card, .col-header, .timeline-dot {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    /* COMPACT HEADER - Reduced from 70px to 56px */
+    .top-bar {
+        height: 56px;
+        padding: 0 10px;
+        flex-wrap: nowrap;
+    }
+
+    .mode-area {
+        width: 50px;
+        margin-right: 8px;
+        border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    #btnCalendar { font-size: 24px; }
+
+    /* Hide stats badge on mobile to save space */
+    .stats-badge { display: none !important; }
+
+    /* Make navigation buttons slightly smaller but still touch-friendly (min 44px) */
+    .nav-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+        border-radius: 6px;
+    }
+
+    /* Compact nav areas */
+    .nav-left { gap: 6px; }
+    .nav-right { gap: 8px; }
+
+    /* Hide "OGGI" text button on small screens */
+    #btnToday {
+        font-size: 11px;
+        padding: 0 10px;
+    }
+
+    /* Month title smaller */
+    .header-month-title {
+        font-size: 16px;
+        margin-left: 8px;
+    }
+
+    /* Center nav container adjustments */
+    .center-nav-container {
+        margin: 0 8px;
+        max-width: none;
+    }
+
+    .search-wrapper { gap: 6px; }
+
+    .search-input {
+        padding: 10px 14px;
+        font-size: 14px;
+        border-radius: 6px;
+    }
+
+    /* Search results full width on mobile */
+    .search-results {
+        left: -10px;
+        right: -10px;
+        top: 52px;
+    }
+
+    /* VERTICAL STACKED LAYOUT - Main change for mobile */
+    .navigator-stage {
+        padding: 8px 8px 56px 8px; /* Reduced bottom padding for compact timeline */
+        overflow-y: auto;
+        overflow-x: hidden;
+        align-items: stretch;
+    }
+
+    .columns-wrapper {
+        flex-direction: column; /* VERTICAL STACK instead of horizontal */
+        width: 100%;
+        height: auto;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    /* All columns full width on mobile */
+    .column {
+        flex: none;
+        min-width: 100%;
+        width: 100%;
+        max-height: none;
+        overflow-y: visible;
+        padding-bottom: 0;
+        gap: 8px;
+    }
+
+    /* Reset opacity and blur filters on mobile - all visible */
+    .w-3, .w-2, .w-1 {
+        opacity: 1;
+        filter: none;
+    }
+
+    /* Focus card full width */
+    .w-0 {
+        flex: none;
+        min-width: 100%;
+        width: 100%;
+    }
+
+    /* Column headers - better touch targets */
+    .col-header {
+        min-height: 48px;
+        font-size: 11px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        position: relative; /* Not sticky on mobile for better scrolling */
+    }
+
+    .sub-col-header {
+        min-height: 48px;
+        font-size: 11px;
+        padding: 8px 12px;
+        position: relative; /* Not sticky on mobile */
+    }
+
+    /* Cards - better touch targets and readability */
+    .card {
+        min-height: 70px;
+        padding: 0;
+        border-radius: 8px;
+    }
+
+    .card-content {
+        padding: 8px 6px;
+    }
+
+    /* Larger avatars on mobile for better visibility */
+    .mini-avatar {
+        width: 40px;
+        height: 40px;
+        margin-right: 14px;
+    }
+
+    /* Larger text on mobile */
+    .mini-name {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .mini-date {
+        font-size: 11px;
+        margin-top: 2px;
+    }
+
+    /* Focus card adjustments for mobile */
+    .focus-card {
+        min-height: auto;
+        border-radius: 8px;
+    }
+
+    .focus-banner {
+        height: 80px; /* Slightly smaller on mobile */
+    }
+
+    .focus-fav-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .focus-avatar-large {
+        width: 70px;
+        height: 70px;
+        bottom: -35px;
+        border-width: 3px;
+        font-size: 28px;
+    }
+
+    .focus-body {
+        padding: 45px 16px 20px 16px;
+    }
+
+    /* Slightly smaller name on mobile */
+    .name-given, .name-surname {
+        font-size: 24px;
+    }
+
+    /* Vital stats stacked on very small screens */
+    .vital-stats {
+        flex-direction: row;
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .vital-column {
+        padding: 10px 8px;
+        border-radius: 6px;
+    }
+
+    .vital-label {
+        font-size: 9px;
+    }
+
+    .vital-date {
+        font-size: 13px;
+    }
+
+    .vital-place-main {
+        font-size: 13px;
+    }
+
+    .vital-place-sub {
+        font-size: 10px;
+        margin-top: 8px;
+    }
+
+    /* Spouse section */
+    .spouse-section {
+        margin-top: 20px;
+        padding: 12px;
+        border-radius: 6px;
+    }
+
+    .spouse-row {
+        padding: 8px;
+        margin-bottom: 8px;
+        min-height: 44px; /* Touch-friendly */
+    }
+
+    .spouse-name {
+        font-size: 14px;
+    }
+
+    .spouse-meta {
+        font-size: 12px;
+    }
+
+    /* COMPACT TIMELINE - Reduced from 70px to 56px */
+    .timeline-container {
+        height: 56px;
+        padding: 0 20px;
+    }
+
+    .timeline-track-wrapper {
+        height: 24px;
+    }
+
+    .timeline-dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .timeline-dot.is-focus {
+        width: 18px;
+        height: 18px;
+        border-width: 2px;
+    }
+
+    .timeline-label {
+        font-size: 9px;
+        padding: 3px 6px;
+        top: -25px;
+    }
+
+    .timeline-year-start, .timeline-year-end {
+        font-size: 10px;
+        margin: 0 8px;
+        min-width: 35px;
+    }
+
+    /* Calendar view optimizations */
+    .calendar-stage {
+        padding: 12px;
+        gap: 15px;
+    }
+
+    .cal-grid-def {
+        grid-template-columns: 50px 1fr;
+        gap: 8px;
+    }
+
+    .cal-header-row {
+        padding: 12px;
+        font-size: 10px;
+        border-radius: 6px;
+    }
+
+    /* Hide marriage and death columns on mobile, show only births */
+    .cal-grid-def > div:nth-child(3),
+    .cal-grid-def > div:nth-child(4) {
+        display: none;
+    }
+
+    .cal-row {
+        padding: 10px 12px;
+    }
+
+    .cal-day {
+        font-size: 14px;
+    }
+
+    .cal-cell {
+        font-size: 11px;
+        padding-left: 8px;
+    }
+
+    .cal-event {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+
+    /* Upload layer */
+    .upload-title {
+        font-size: 28px;
+        padding: 0 20px;
+    }
+
+    .upload-sub {
+        font-size: 13px;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .btn-upload {
+        padding: 12px 32px;
+        font-size: 14px;
+    }
+
+    /* Language switcher */
+    .lang-switcher {
+        gap: 15px;
+    }
+
+    .lang-btn {
+        font-size: 32px;
+    }
+
+    /* Favorites dropdown */
+    .fav-dropdown {
+        width: 240px;
+        right: -10px;
+    }
+
+    /* Password modal */
+    .password-modal-content {
+        width: 92%;
+        padding: 30px 20px;
+    }
+
+    .password-title {
+        font-size: 20px;
+    }
+
+    .password-icon {
+        font-size: 40px;
+    }
+
+    /* Parents column fix for mobile */
+    .parents-col-fix {
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: visible !important;
+        height: auto;
+    }
+
+    .parents-fixed-area {
+        padding-bottom: 8px;
+        gap: 8px;
+    }
+
+    .parents-scroll-area {
+        overflow-y: visible;
+        gap: 8px;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 380px) {
+    /* Ultra compact header */
+    .top-bar { height: 52px; }
+
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .search-input {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    /* Stack vital stats vertically on very small screens */
+    .vital-stats {
+        flex-direction: column;
+    }
+
+    .vital-column {
+        width: 100%;
+    }
+
+    /* Smaller focus card elements */
+    .name-given, .name-surname {
+        font-size: 22px;
+    }
+
+    .focus-avatar-large {
+        width: 60px;
+        height: 60px;
+        bottom: -30px;
+        font-size: 24px;
+    }
+
+    .focus-body {
+        padding: 40px 14px 18px 14px;
+    }
+
+    /* Calendar single column */
+    .cal-grid-def {
+        grid-template-columns: 1fr;
+    }
+
+    .cal-day {
+        font-size: 16px;
+        font-weight: 900;
+    }
+}
