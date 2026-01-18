@@ -546,7 +546,7 @@
         width: 100%;
         max-width: 100%; /* Ensure it doesn't exceed viewport */
         height: auto;
-        gap: 4px; /* REDUCED from 12px to 4px for tighter spacing */
+        gap: 6px; /* INCREASED from 4px to match column internal gap */
         align-items: stretch;
         margin: 0; /* Remove any default margins */
         padding: 0; /* Remove any default padding */
@@ -592,7 +592,7 @@
         padding: 8px 12px;
         border-radius: 8px;
         position: relative; /* Not sticky on mobile for better scrolling */
-        margin-bottom: 6px; /* REDUCED margin */
+        margin-bottom: 0; /* Remove margin - column gap handles spacing */
     }
 
     .sub-col-header {
@@ -600,7 +600,7 @@
         font-size: 11px;
         padding: 8px 12px;
         position: relative; /* Not sticky on mobile */
-        margin-bottom: 6px; /* REDUCED margin */
+        margin-bottom: 0; /* Remove margin - column gap handles spacing */
     }
 
     /* Cards - better touch targets and readability */
@@ -874,15 +874,15 @@
     }
 
     .parents-fixed-area {
-        padding-bottom: 6px; /* REDUCED from 8px */
-        gap: 6px; /* REDUCED from 8px */
+        padding-bottom: 0; /* Remove padding - column gap handles spacing */
+        gap: 6px; /* Card spacing within section */
         flex-shrink: 0;
     }
 
     .parents-scroll-area {
         overflow-y: visible !important; /* Show all content */
         overflow-x: hidden;
-        gap: 6px; /* REDUCED from 8px */
+        gap: 6px; /* Card spacing within section */
         flex-grow: 0; /* Don't expand to fill space */
         flex-shrink: 0;
         height: auto !important; /* Critical for auto-sizing */
