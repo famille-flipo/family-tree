@@ -716,46 +716,50 @@
             }
             
             parentsCol.appendChild(fixedArea);
-            const scrollArea = document.createElement('div');
-            scrollArea.className = "parents-scroll-area g-siblings";
-            const subHeader = document.createElement('div');
-            subHeader.className = 'sub-col-header'; 
-            if(siblings.length > 0) subHeader.innerHTML = `${t('cols.sib')} <span class="col-count">(${siblings.length})</span>`;
-            else subHeader.innerHTML = t('cols.sib');
-            scrollArea.appendChild(subHeader);
 
-            if(siblings.length > 0) {
-                siblings.forEach(sib => {
-                    const sCard = document.createElement('div');
-                    const hasP = sib.parents && sib.parents.length > 0;
-                    const hasC = hasChildren(sib);
-                    sCard.className = `card`; 
-                    sCard.onmouseenter = () => toggleDotHighlight(sib.id, true);
-                    sCard.onmouseleave = () => toggleDotHighlight(sib.id, false);
-                    const leftIndicator = hasP ? '<div class="indicator-box indicator-active left">‹</div>' : '<div class="indicator-box"></div>';
-                    const rightIndicator = hasC ? '<div class="indicator-box indicator-active right">›</div>' : '<div class="indicator-box"></div>';
-                    const bYear = getYear(sib.birth.date);
-                    const dYear = getYear(sib.death.date);
-                    const lifeSpan = dYear ? `${bYear} - ${dYear}` : bYear;
-                    sCard.innerHTML = `
-                        ${leftIndicator}
-                        <div class="card-content">
-                            <div class="mini-avatar ${getAvatarClass(sib.sex)}">${getAvatarSVG(sib.sex)}</div>
-                            <div class="mini-info">
-                                <span class="mini-name">${toTitleCase(sib.name)}</span>
-                                <span class="mini-date">${lifeSpan}</span>
+            // Only show siblings section if there are siblings
+            if (siblings.length > 0) {
+                const scrollArea = document.createElement('div');
+                scrollArea.className = "parents-scroll-area g-siblings";
+                const subHeader = document.createElement('div');
+                subHeader.className = 'sub-col-header';
+                if(siblings.length > 0) subHeader.innerHTML = `${t('cols.sib')} <span class="col-count">(${siblings.length})</span>`;
+                else subHeader.innerHTML = t('cols.sib');
+                scrollArea.appendChild(subHeader);
+
+                if(siblings.length > 0) {
+                    siblings.forEach(sib => {
+                        const sCard = document.createElement('div');
+                        const hasP = sib.parents && sib.parents.length > 0;
+                        const hasC = hasChildren(sib);
+                        sCard.className = `card`;
+                        sCard.onmouseenter = () => toggleDotHighlight(sib.id, true);
+                        sCard.onmouseleave = () => toggleDotHighlight(sib.id, false);
+                        const leftIndicator = hasP ? '<div class="indicator-box indicator-active left">‹</div>' : '<div class="indicator-box"></div>';
+                        const rightIndicator = hasC ? '<div class="indicator-box indicator-active right">›</div>' : '<div class="indicator-box"></div>';
+                        const bYear = getYear(sib.birth.date);
+                        const dYear = getYear(sib.death.date);
+                        const lifeSpan = dYear ? `${bYear} - ${dYear}` : bYear;
+                        sCard.innerHTML = `
+                            ${leftIndicator}
+                            <div class="card-content">
+                                <div class="mini-avatar ${getAvatarClass(sib.sex)}">${getAvatarSVG(sib.sex)}</div>
+                                <div class="mini-info">
+                                    <span class="mini-name">${toTitleCase(sib.name)}</span>
+                                    <span class="mini-date">${lifeSpan}</span>
+                                </div>
                             </div>
-                        </div>
-                        ${rightIndicator}
-                    `;
-                    sCard.onclick = () => render7GenView(sib.id);
-                    scrollArea.appendChild(sCard);
-                });
-            } else {
-                 scrollArea.innerHTML += `<div style="text-align:center; opacity:0.3; font-size:11px; margin-top:5px;">Nessuno trovato</div>`;
-            }
+                            ${rightIndicator}
+                        `;
+                        sCard.onclick = () => render7GenView(sib.id);
+                        scrollArea.appendChild(sCard);
+                    });
+                } else {
+                     scrollArea.innerHTML += `<div style="text-align:center; opacity:0.3; font-size:11px; margin-top:5px;">Nessuno trovato</div>`;
+                }
 
-            parentsCol.appendChild(scrollArea);
+                parentsCol.appendChild(scrollArea);
+            }
 
             // Only show parents/siblings column if there are parents or siblings on mobile
             if (!isMobile || genM1.length > 0 || siblings.length > 0) {
