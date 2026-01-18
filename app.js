@@ -660,12 +660,20 @@
             const genP2 = getNextGen(genP1);
             const genP3 = getNextGen(genP2);
 
-            const siblings = getSiblings(focus); 
+            const siblings = getSiblings(focus);
             const allPeople = [...genM3, ...genM2, ...genM1, ...gen0, ...siblings, ...genP1, ...genP2, ...genP3];
             renderTimeline(allPeople, focus.id);
 
-            stage.appendChild(createColumn(genM3, t('cols.ggp'), "w-3 g-minus-3"));
-            stage.appendChild(createColumn(genM2, t('cols.gp'), "w-2 g-minus-2"));
+            // Check if on mobile to hide empty sections
+            const isMobile = window.innerWidth <= 768;
+
+            // Only show sections with people on mobile, show all on desktop
+            if (!isMobile || genM3.length > 0) {
+                stage.appendChild(createColumn(genM3, t('cols.ggp'), "w-3 g-minus-3"));
+            }
+            if (!isMobile || genM2.length > 0) {
+                stage.appendChild(createColumn(genM2, t('cols.gp'), "w-2 g-minus-2"));
+            }
             
             const parentsCol = document.createElement('div');
             parentsCol.className = "column w-1 g-minus-1 parents-col-fix";
@@ -748,20 +756,30 @@
             }
 
             parentsCol.appendChild(scrollArea);
-            stage.appendChild(parentsCol);
-            
+
+            // Only show parents/siblings column if there are parents or siblings on mobile
+            if (!isMobile || genM1.length > 0 || siblings.length > 0) {
+                stage.appendChild(parentsCol);
+            }
+
             stage.appendChild(createFocusCard(focus));
-            stage.appendChild(createColumn(genP1, t('cols.c'), "w-1 g-plus-1"));
-            stage.appendChild(createColumn(genP2, t('cols.gc'), "w-2 g-plus-2"));
-            stage.appendChild(createColumn(genP3, t('cols.ggc'), "w-3 g-plus-3"));
+
+            // Only show descendant sections with people on mobile, show all on desktop
+            if (!isMobile || genP1.length > 0) {
+                stage.appendChild(createColumn(genP1, t('cols.c'), "w-1 g-plus-1"));
+            }
+            if (!isMobile || genP2.length > 0) {
+                stage.appendChild(createColumn(genP2, t('cols.gc'), "w-2 g-plus-2"));
+            }
+            if (!isMobile || genP3.length > 0) {
+                stage.appendChild(createColumn(genP3, t('cols.ggc'), "w-3 g-plus-3"));
+            }
 
             stage.style.opacity = 1;
             setTimeout(() => {
                 const focusEl = stage.querySelector('.w-0');
                 if(focusEl) {
-                    // Check if we're on mobile (vertical layout)
-                    const isMobile = window.innerWidth <= 768;
-
+                    // Use the same isMobile check from above
                     if (isMobile) {
                         // Mobile: scroll vertically to focus card
                         const topPos = focusEl.offsetTop - (container.clientHeight / 2) + (focusEl.clientHeight / 2);
