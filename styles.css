@@ -658,7 +658,7 @@
         width: 100%;
         max-width: 100%; /* Prevent exceeding column width */
         border-radius: 8px;
-        margin-bottom: 8px; /* Remove any extra margin */
+        margin-bottom: 0px; /* Remove any extra margin */
         overflow: hidden; /* Keep hidden to maintain rounded corners */
         box-sizing: border-box; /* Include border in width */
     }
@@ -879,6 +879,14 @@
         flex-shrink: 0;
         height: auto !important; /* Critical for auto-sizing */
         min-height: auto !important;
+    }
+
+    /* The mobile-scroll-padding is a div we add at the bottom to avoid having
+     the last card touching the bottom of the screen.
+    */
+    #mobile-scroll-padding {
+        height: 100px;
+        flex-shrink: 0;
     }
 }
 

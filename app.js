@@ -779,6 +779,13 @@
                 stage.appendChild(createColumn(genP3, t('cols.ggc'), "w-3 g-plus-3"));
             }
 
+            // Adding a additional div at the bottom to avoid having the last
+            // card touching the bottom of the screen.
+            const mobileScrollPaddingDiv = document.createElement('div');
+            mobileScrollPaddingDiv.id = "mobile-scroll-padding";
+            console.log("creating mobileScrollPaddingDiv", mobileScrollPaddingDiv)
+            stage.appendChild(mobileScrollPaddingDiv);
+
             stage.style.opacity = 1;
             setTimeout(() => {
                 const focusEl = stage.querySelector('.w-0');
