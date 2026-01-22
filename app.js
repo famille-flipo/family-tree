@@ -137,6 +137,10 @@
 
     let currentLang = 'fr';
 
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+
     function t(key) {
         const keys = key.split('.');
         let val = TRANSLATIONS[currentLang];
@@ -524,9 +528,12 @@
     }
 
     function navigateToCalendarDate(dateStr) {
+        // Disable calendar navigation on mobile
+        if(isMobile()) return;
+
         if(!dateStr) return;
         dateStr = dateStr.replace(/\\'/g, "'");
-        const dateObj = parseGedDateDayMonth(dateStr); 
+        const dateObj = parseGedDateDayMonth(dateStr);
         if(!dateObj) return; 
 
         IS_CALENDAR_MODE = true;
@@ -665,13 +672,13 @@
             renderTimeline(allPeople, focus.id);
 
             // Check if on mobile to hide empty sections
-            const isMobile = window.innerWidth <= 768;
+            const mobile = isMobile();
 
             // Only show sections with people on mobile, show all on desktop
-            if (!isMobile || genM3.length > 0) {
+            if (!mobile || genM3.length > 0) {
                 stage.appendChild(createColumn(genM3, t('cols.ggp'), "w-3 g-minus-3"));
             }
-            if (!isMobile || genM2.length > 0) {
+            if (!mobile || genM2.length > 0) {
                 stage.appendChild(createColumn(genM2, t('cols.gp'), "w-2 g-minus-2"));
             }
             
@@ -762,20 +769,20 @@
             }
 
             // Only show parents/siblings column if there are parents or siblings on mobile
-            if (!isMobile || genM1.length > 0 || siblings.length > 0) {
+            if (!mobile || genM1.length > 0 || siblings.length > 0) {
                 stage.appendChild(parentsCol);
             }
 
             stage.appendChild(createFocusCard(focus));
 
             // Only show descendant sections with people on mobile, show all on desktop
-            if (!isMobile || genP1.length > 0) {
+            if (!mobile || genP1.length > 0) {
                 stage.appendChild(createColumn(genP1, t('cols.c'), "w-1 g-plus-1"));
             }
-            if (!isMobile || genP2.length > 0) {
+            if (!mobile || genP2.length > 0) {
                 stage.appendChild(createColumn(genP2, t('cols.gc'), "w-2 g-plus-2"));
             }
-            if (!isMobile || genP3.length > 0) {
+            if (!mobile || genP3.length > 0) {
                 stage.appendChild(createColumn(genP3, t('cols.ggc'), "w-3 g-plus-3"));
             }
 
