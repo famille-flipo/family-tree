@@ -1034,7 +1034,7 @@
 
             } catch (error) {
                 // Wrong password or corrupted data
-                errorMsg.textContent = 'Incorrect password. Please try again.';
+                errorMsg.textContent = 'Mot de passe incorrect.';
                 input.value = '';
                 input.disabled = false;
                 submitBtn.disabled = false;
