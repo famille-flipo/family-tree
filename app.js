@@ -937,9 +937,6 @@
                 <div class="focus-name">${nameHtml}</div>
                 <div class="name-separator"></div>
                 ${fsHtml}
-                <div style="margin-top:4px; margin-bottom: 20px;">
-                    <span class="focus-id">GED: ${p.id}</span>
-                </div>
                 <div class="vital-stats">
                     <div class="vital-column" onclick="navigateToCalendarDate('${p.birth.date ? p.birth.date.replace(/'/g, "\\'") : ''}')" title="${t('tooltips.calendarView')}">
                         <span class="vital-label">${t('card.birt')}</span>
