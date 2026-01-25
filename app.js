@@ -978,12 +978,28 @@
         }
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', async () => {
         updateStaticUI();
 
         // Check if embedded encrypted data exists
         if (ENCRYPTED_GEDCOM_DATA && ENCRYPTED_GEDCOM_DATA.trim().length > 0) {
-            // Show password prompt modal
+            // Try to use saved password from localStorage
+            const savedPassword = localStorage.getItem('familyTreePassword');
+
+            if (savedPassword) {
+                try {
+                    // Attempt automatic decryption with saved password
+                    const decryptedGEDCOM = await decryptGEDCOM(ENCRYPTED_GEDCOM_DATA, savedPassword);
+                    // Success - initialize the app
+                    initData(decryptedGEDCOM);
+                    return;
+                } catch (error) {
+                    // Saved password is wrong or data is corrupted - clear it
+                    localStorage.removeItem('familyTreePassword');
+                }
+            }
+
+            // No saved password or it failed - show password prompt modal
             showPasswordPrompt();
         }
     });
@@ -1025,6 +1041,9 @@
             try {
                 // Decrypt the embedded data
                 const decryptedGEDCOM = await decryptGEDCOM(ENCRYPTED_GEDCOM_DATA, password);
+
+                // Save password to localStorage for future visits
+                localStorage.setItem('familyTreePassword', password);
 
                 // Hide modal
                 modal.style.display = 'none';
