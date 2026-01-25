@@ -790,7 +790,6 @@
             // card touching the bottom of the screen.
             const mobileScrollPaddingDiv = document.createElement('div');
             mobileScrollPaddingDiv.id = "mobile-scroll-padding";
-            console.log("creating mobileScrollPaddingDiv", mobileScrollPaddingDiv)
             stage.appendChild(mobileScrollPaddingDiv);
 
             stage.style.opacity = 1;
